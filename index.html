@@ -1,0 +1,89 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NutriAI · Alimentación Inteligente para Foráneos</title>
+<style>
+:root{--b:#2a64b0;--c:#19b5d8;--o:#f5a21b;--bg:#fdfaf0;--t:#17324d}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--t)}
+header{display:flex;align-items:center;gap:12px;padding:10px 20px;background:#fff;box-shadow:0 1px 6px #0002;position:sticky;top:0;z-index:5}
+header img{height:46px}header b{color:var(--b);font-size:1.2rem}header span{margin-left:auto;font-size:.85rem}
+.hero{text-align:center;padding:24px 16px 8px}.hero img{width:210px;max-width:55%}.hero p{max-width:560px;margin:8px auto;font-size:1.1rem}
+.card{max-width:780px;margin:16px auto;background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 12px #0001}
+button{background:var(--b);color:#fff;border:0;border-radius:10px;padding:12px 18px;font-size:1rem;cursor:pointer}
+input[type=file]{margin:10px 0;max-width:100%}.macros{display:flex;flex-wrap:wrap;gap:8px}.macros span{background:#eef5fd;border-radius:20px;padding:6px 12px;font-weight:600}
+.verde{color:#1a9b4a}.amarillo{color:#d49100}.rojo{color:#d62d2d}.sem{font-weight:700;font-size:1.1rem}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:10px 0}.fg label{font-size:.85rem;display:flex;flex-direction:column;gap:4px}.fg input,.fg select{padding:8px;border:1px solid #cdd8e6;border-radius:8px;font-size:1rem}.tb{width:100%;border-collapse:collapse;font-size:.85rem}.tb td,.tb th{border-bottom:1px solid #e3e9f1;padding:4px 6px;text-align:left;vertical-align:top}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}.plans div{border:2px solid var(--c);border-radius:14px;padding:12px}.plans .pro{border-color:var(--o)}
+#chat{position:fixed;right:16px;bottom:16px;width:330px;max-width:calc(100vw - 32px);z-index:9}
+#box{display:none;background:#fff;border-radius:16px;box-shadow:0 4px 20px #0004;overflow:hidden}
+#box h4{margin:0;padding:10px 14px;background:var(--b);color:#fff;display:flex;gap:8px;align-items:center}#box h4 img{height:30px;background:#fff;border-radius:50%}
+#log{height:300px;overflow:auto;padding:10px;font-size:.92rem}.u,.a{margin:6px 0;padding:8px 10px;border-radius:12px;max-width:85%;white-space:pre-wrap}
+.u{background:var(--b);color:#fff;margin-left:auto}.a{background:#eef5fd}#row{display:flex;border-top:1px solid #ddd}#row input{flex:1;border:0;padding:12px;font-size:1rem}#row button{border-radius:0}
+#fab{float:right;width:64px;height:64px;border-radius:50%;padding:0;background:#fff;box-shadow:0 3px 14px #0004}#fab img{width:56px}
+</style></head><body>
+<header><img src="/static/logo_transparente.png" alt="NutriAI"><b>NutriAI</b><span>Beta universitaria</span></header>
+<section class="hero"><img src="/static/logo_transparente.png" alt="Dr. Nutri"><h1>Tu doctor de bolsillo</h1>
+<p>Toma una foto de tu platillo o de lo que tienes en el refri. Dr. Nutri te dice qué estás comiendo, qué puedes cocinar y cuánto tiempo te quedan los ingredientes.</p></section>
+<section class="card"><h2>📸 Escanea tu comida</h2>
+<input type="file" id="foto" accept="image/*" capture="environment"><br><button id="go">Analizar con Dr. Nutri</button>
+<div id="res" style="margin-top:14px"></div></section>
+<section class="card"><h2>🛒 Planea tu quincena</h2>
+<p>Dime cuánto dinero tienes y Dr. Nutri arma tus porciones por comida, tu menú y dónde comprar cada cosa más barato.</p>
+<div class="fg"><label>Presupuesto de la quincena ($)<input id="p_pres" type="number" placeholder="800"></label>
+<label>Peso (kg)<input id="p_peso" type="number" placeholder="70"></label>
+<label>Estatura (cm)<input id="p_est" type="number" placeholder="170"></label>
+<label>Edad<input id="p_edad" type="number" placeholder="21"></label>
+<label>Sexo<select id="p_sexo"><option value="h">Hombre</option><option value="m">Mujer</option></select></label>
+<label>Actividad<select id="p_act"><option value="1">Casi no me muevo</option><option value="2" selected>Entreno 2-3 veces/sem</option><option value="3">Entreno 4+ veces/sem</option></select></label>
+<label>Objetivo<select id="p_obj"><option value="1">Mantener peso</option><option value="2">Bajar grasa</option><option value="3">Ganar músculo</option></select></label>
+<label>Comidas al día<select id="p_com"><option value="3">3</option><option value="4">4 (con colación)</option></select></label>
+<label>Calorías que comes hoy (opcional)<input id="p_kcal" type="number" placeholder="no sé"></label></div>
+<button id="pgo">Armar mi plan</button><div id="pres" style="margin-top:14px"></div></section>
+<section class="card"><h2>Planes</h2><div class="plans">
+<div><b>Básico</b><br>GRATIS<br><small>Registro diario, calorías, alertas esenciales</small></div>
+<div class="pro"><b>Pro Individual</b><br>$9.99 USD/mes · 1er mes gratis<br><small>Fotos ilimitadas, alertas médicas, recetario, métricas</small></div>
+<div><b>Familiar</b><br>$16.99 USD/mes<br><small>Hasta 5 cuentas, compras y menú semanal</small></div></div></section>
+<div id="chat"><div id="box"><h4><img src="/static/logo_transparente.png"> Dr. Nutri · en línea</h4><div id="log"></div>
+<div id="row"><input id="msg" placeholder="Escribe aquí..."><button id="send">➤</button></div></div>
+<button id="fab" title="Chatear con Dr. Nutri"><img src="/static/logo_transparente.png"></button></div>
+<script>
+const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function render(d){
+ if(d.tipo=='otro')return `<p>🦦 ${esc(d.consejo)}</p>`;
+ let h=`<h3>${esc(d.titulo)}</h3>`;
+ if(d.calorias)h+=`<div class="macros"><span>🔥 ${esc(d.calorias)} kcal</span><span>💪 ${esc(d.proteina_g)} g prot</span><span>🍞 ${esc(d.carbohidratos_g)} g carbs</span><span>🥑 ${esc(d.grasas_g)} g grasa</span><span>🌾 ${esc(d.fibra_g)} g fibra</span></div>`;
+ h+=`<p class="sem ${esc(d.semaforo)}">Semáforo: ${esc((d.semaforo||'').toUpperCase())}</p><p>${esc(d.consejo)}</p>`;
+ if(d.ingredientes?.length)h+='<h4>⏳ Cuánto les queda</h4><ul>'+d.ingredientes.map(i=>`<li>${esc(i.nombre)}: ${esc(i.vida_util)}</li>`).join('')+'</ul>';
+ if(d.recetas?.length)h+='<h4>🍳 Recetas</h4>'+d.recetas.map(r=>`<details><summary>${esc(r.nombre)} · ${esc(r.tiempo_min)} min</summary><ol>${r.pasos.map(p=>`<li>${esc(p)}</li>`).join('')}</ol></details>`).join('');
+ return h+'<small>Estimación orientativa; no sustituye a un profesional de la salud.</small>';
+}
+$('go').onclick=async()=>{const f=$('foto').files[0];if(!f)return $('res').textContent='Primero elige o toma una foto 📸';
+ $('res').textContent='Dr. Nutri está analizando... 🦦';const fd=new FormData();fd.append('foto',f);
+ try{const r=await fetch('/api/scan',{method:'POST',body:fd});const d=await r.json();$('res').innerHTML=d.error?esc(d.error):render(d)}catch(e){$('res').textContent='Error de conexión'}};
+
+function datosPlan(){return {presupuesto:$('p_pres').value,peso:$('p_peso').value,estatura:$('p_est').value,edad:$('p_edad').value,sexo:$('p_sexo').value,actividad:$('p_act').value,objetivo:$('p_obj').value,comidas:$('p_com').value,kcal:$('p_kcal').value}}
+const IC={desayuno:'🌅 Desayuno',comida:'☀️ Comida',cena:'🌙 Cena',colacion:'🍎 Colación'};
+const por=x=>`${esc(x.nombre.toLowerCase())} ${x.pzas?esc(x.pzas)+' pza':esc(x.g)+' '+esc(x.unidad)}`;
+function renderPlan(p){
+ let h=`<h3>Tu plan de ${p.dias} días (${esc(p.modo)})</h3><div class="macros"><span>🔥 ${p.kcal_real} kcal/día</span><span>💪 ${p.prot_real} g proteína (meta ${p.prot_obj})</span><span>💰 $${Math.round(p.costo_total)} de $${Math.round(p.presupuesto)}</span><span>≈ $${Math.round(p.costo_dia)}/día</span></div>`;
+ h+=p.alcanza?`<p class="sem verde">✅ Te sobran $${Math.round(p.sobrante)}</p>`:`<p class="sem rojo">⚠️ Te faltan $${Math.round(p.faltante)}: alcanzas para ${p.dias_alcanza} de ${p.dias} días. Compra para esos días y completa en la siguiente quincena.</p>`;
+ p.notas.forEach(n=>h+=`<p>ℹ️ ${esc(n)}</p>`); if(p.sugerencia)h+=`<p>💡 ${esc(p.sugerencia)}</p>`;
+ h+='<h4>🍽️ Cómo repartir tu día</h4><ul>'+Object.entries(p.comidas).map(([m,v])=>`<li><b>${IC[m]}</b> (~${v.kcal} kcal): ${v.items.map(por).join(', ')}</li>`).join('')+'</ul>';
+ h+='<h4>🏬 Dónde comprar (lo más barato)</h4>'+Object.entries(p.por_tienda).map(([t,its])=>`<details open><summary><b>${esc(t)}</b> · $${Math.round(its.reduce((a,i)=>a+i.costo,0))}</summary><table class="tb">${its.map(i=>`<tr><td>${esc(i.nombre)}</td><td>${esc(i.kg_total)} ${i.unidad=='ml'?'l':'kg'}</td><td>$${Math.round(i.costo)}</td></tr>`).join('')}</table></details>`).join('');
+ const u=Object.entries(p.una_tienda); if(u.length)h+='<h4>📊 Si compras todo en una sola tienda</h4><ul>'+u.map(([t,v])=>`<li>${esc(t)}: $${Math.round(v)}</li>`).join('')+`</ul><p>Combinando tiendas ahorras $${Math.round(u[0][1]-p.costo_total)} frente a la mejor tienda única.</p>`;
+ h+=`<h4>📅 Menú de ${p.dias} días</h4><details><summary>Ver menú completo</summary><table class="tb">${p.menu.map(m=>`<tr><td><b>${m.dia}</b></td><td>${['desayuno','comida','cena','colacion'].filter(k=>m[k]).map(k=>IC[k].split(' ')[0]+' '+esc(m[k])).join('<br>')}</td></tr>`).join('')}</table></details>`;
+ h+='<p><button id="rgo">🍳 Recetas con IA</button></p><div id="rtxt"></div>';
+ return h+`<small>${esc(p.aviso)} Las cantidades son orientativas y no sustituyen a un nutriólogo.</small>`;
+}
+$('pgo').onclick=async()=>{$('pres').textContent='Dr. Nutri está haciendo cuentas... 🦦';
+ try{const r=await fetch('/api/plan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(datosPlan())});const d=await r.json();
+  $('pres').innerHTML=d.error?esc(d.error):renderPlan(d);
+  if(!d.error)$('rgo').onclick=async()=>{$('rtxt').textContent='Escribiendo recetas...';try{const r2=await fetch('/api/plan/recetas',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(datosPlan())});const d2=await r2.json();$('rtxt').innerHTML=d2.error?esc(d2.error):'<pre style="white-space:pre-wrap;font:inherit">'+esc(d2.texto)+'</pre>'}catch(e){$('rtxt').textContent='Error de conexión'}}}
+ catch(e){$('pres').textContent='Error de conexión'}};
+const sid=localStorage.sid||(localStorage.sid=Math.random().toString(36).slice(2)+Date.now());let after=0,poll=null;
+function add(t,c){const d=document.createElement('div');d.className=c;d.textContent=t;$('log').appendChild(d);$('log').scrollTop=1e9}
+$('fab').onclick=()=>{const b=$('box');b.style.display=b.style.display=='block'?'none':'block';
+ if(!$('log').children.length){add('¡Hola! Soy Dr. Nutri 🦦\n\n1️⃣ Analizar mi comida (usa el botón de arriba)\n2️⃣ Planes y precios\n3️⃣ Hablar con un asesor\n4️⃣ Pagos, quejas o sugerencias\n5️⃣ Planear mi quincena\n\nO escríbeme tu pregunta.','a');startPoll()}};
+async function send(){const t=$('msg').value.trim();if(!t)return;$('msg').value='';add(t,'u');
+ try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sid,text:t})});(await r.json()).replies.forEach(x=>add(x,'a'))}catch(e){add('Error de conexión','a')}}
+$('send').onclick=send;$('msg').onkeydown=e=>{if(e.key=='Enter')send()};
+function startPoll(){if(poll)return;poll=setInterval(async()=>{try{const r=await fetch(`/api/poll?sid=${sid}&after=${after}`);(await r.json()).msgs.forEach(m=>{after=Math.max(after,m.id);add('👤 '+m.text,'a')})}catch(e){}},5000)}
+</script></body></html>
