@@ -1,0 +1,443 @@
+{
+ "_aviso": "PRECIOS DE EJEMPLO (pesos MXN por kg o litro) para la beta. NO son precios reales de tienda: actualízalos con los de tu ciudad editando este archivo. El programa lo lee cada vez que se arma un plan.",
+ "actualizado": "ejemplo",
+ "tiendas": [
+  "Bodega Aurrerá",
+  "Walmart",
+  "Soriana",
+  "Chedraui",
+  "Mercado local"
+ ],
+ "alimentos": {
+  "arroz": {
+   "nombre": "Arroz",
+   "rol": "cereal",
+   "kcal": 360,
+   "prot": 7,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 28,
+    "Walmart": 31,
+    "Soriana": 34,
+    "Chedraui": 33,
+    "Mercado local": 30
+   }
+  },
+  "pasta": {
+   "nombre": "Pasta para sopa",
+   "rol": "cereal",
+   "kcal": 360,
+   "prot": 12,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 38,
+    "Walmart": 42,
+    "Soriana": 44,
+    "Chedraui": 43,
+    "Mercado local": 40
+   }
+  },
+  "papa": {
+   "nombre": "Papa",
+   "rol": "cereal",
+   "kcal": 77,
+   "prot": 2,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 26,
+    "Walmart": 29,
+    "Soriana": 31,
+    "Chedraui": 30,
+    "Mercado local": 22
+   }
+  },
+  "avena": {
+   "nombre": "Avena",
+   "rol": "avena",
+   "kcal": 380,
+   "prot": 13,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 36,
+    "Walmart": 40,
+    "Soriana": 44,
+    "Chedraui": 42,
+    "Mercado local": 38
+   }
+  },
+  "tortilla": {
+   "nombre": "Tortilla de maíz",
+   "rol": "tortilla",
+   "kcal": 220,
+   "prot": 5.5,
+   "pza_g": 30,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 24,
+    "Walmart": 26,
+    "Soriana": 27,
+    "Chedraui": 27,
+    "Mercado local": 23
+   }
+  },
+  "frijol": {
+   "nombre": "Frijol",
+   "rol": "legumbre",
+   "kcal": 340,
+   "prot": 21,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 36,
+    "Walmart": 40,
+    "Soriana": 44,
+    "Chedraui": 43,
+    "Mercado local": 38
+   }
+  },
+  "lenteja": {
+   "nombre": "Lenteja",
+   "rol": "legumbre",
+   "kcal": 350,
+   "prot": 25,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 42,
+    "Walmart": 46,
+    "Soriana": 52,
+    "Chedraui": 50,
+    "Mercado local": 44
+   }
+  },
+  "garbanzo": {
+   "nombre": "Garbanzo",
+   "rol": "legumbre",
+   "kcal": 360,
+   "prot": 20,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 58,
+    "Walmart": 64,
+    "Soriana": 70,
+    "Chedraui": 68,
+    "Mercado local": 60
+   }
+  },
+  "huevo": {
+   "nombre": "Huevo",
+   "rol": "animal",
+   "kcal": 143,
+   "prot": 12.5,
+   "pza_g": 50,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 46,
+    "Walmart": 52,
+    "Soriana": 56,
+    "Chedraui": 55,
+    "Mercado local": 50
+   }
+  },
+  "muslo": {
+   "nombre": "Muslo de pollo",
+   "rol": "animal",
+   "kcal": 160,
+   "prot": 16,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 62,
+    "Walmart": 68,
+    "Soriana": 74,
+    "Chedraui": 72,
+    "Mercado local": 60
+   }
+  },
+  "pechuga": {
+   "nombre": "Pechuga de pollo",
+   "rol": "animal",
+   "kcal": 120,
+   "prot": 22,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 112,
+    "Walmart": 124,
+    "Soriana": 132,
+    "Chedraui": 130,
+    "Mercado local": 108
+   }
+  },
+  "atun": {
+   "nombre": "Atún en lata",
+   "rol": "animal",
+   "kcal": 116,
+   "prot": 26,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 150,
+    "Walmart": 158,
+    "Soriana": 170,
+    "Chedraui": 165
+   }
+  },
+  "sardina": {
+   "nombre": "Sardina en lata",
+   "rol": "animal",
+   "kcal": 208,
+   "prot": 25,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 82,
+    "Walmart": 90,
+    "Soriana": 96,
+    "Chedraui": 94
+   }
+  },
+  "molida": {
+   "nombre": "Carne molida de res",
+   "rol": "animal",
+   "kcal": 250,
+   "prot": 17,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 150,
+    "Walmart": 168,
+    "Soriana": 180,
+    "Chedraui": 176,
+    "Mercado local": 158
+   }
+  },
+  "leche": {
+   "nombre": "Leche",
+   "rol": "lacteo",
+   "kcal": 60,
+   "prot": 3.2,
+   "pza_g": null,
+   "unidad": "ml",
+   "precios": {
+    "Bodega Aurrerá": 21,
+    "Walmart": 24,
+    "Soriana": 25,
+    "Chedraui": 25
+   }
+  },
+  "yogurt": {
+   "nombre": "Yogurt natural",
+   "rol": "lacteo",
+   "kcal": 61,
+   "prot": 3.5,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 44,
+    "Walmart": 50,
+    "Soriana": 54,
+    "Chedraui": 52
+   }
+  },
+  "aceite": {
+   "nombre": "Aceite",
+   "rol": "grasa",
+   "kcal": 884,
+   "prot": 0,
+   "pza_g": null,
+   "unidad": "ml",
+   "precios": {
+    "Bodega Aurrerá": 44,
+    "Walmart": 50,
+    "Soriana": 54,
+    "Chedraui": 52
+   }
+  },
+  "cacahuate": {
+   "nombre": "Cacahuate",
+   "rol": "grasa",
+   "kcal": 590,
+   "prot": 26,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 88,
+    "Walmart": 98,
+    "Soriana": 104,
+    "Chedraui": 100,
+    "Mercado local": 85
+   }
+  },
+  "jitomate": {
+   "nombre": "Jitomate",
+   "rol": "verdura",
+   "kcal": 18,
+   "prot": 0.9,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 22,
+    "Walmart": 28,
+    "Soriana": 30,
+    "Chedraui": 29,
+    "Mercado local": 20
+   }
+  },
+  "cebolla": {
+   "nombre": "Cebolla",
+   "rol": "verdura",
+   "kcal": 40,
+   "prot": 1.1,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 18,
+    "Walmart": 24,
+    "Soriana": 26,
+    "Chedraui": 25,
+    "Mercado local": 16
+   }
+  },
+  "zanahoria": {
+   "nombre": "Zanahoria",
+   "rol": "verdura",
+   "kcal": 41,
+   "prot": 0.9,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 16,
+    "Walmart": 22,
+    "Soriana": 24,
+    "Chedraui": 22,
+    "Mercado local": 14
+   }
+  },
+  "calabacita": {
+   "nombre": "Calabacita",
+   "rol": "verdura",
+   "kcal": 17,
+   "prot": 1.2,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 28,
+    "Walmart": 34,
+    "Soriana": 36,
+    "Chedraui": 35,
+    "Mercado local": 24
+   }
+  },
+  "nopal": {
+   "nombre": "Nopal",
+   "rol": "verdura",
+   "kcal": 16,
+   "prot": 1.3,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 22,
+    "Walmart": 28,
+    "Soriana": 30,
+    "Chedraui": 28,
+    "Mercado local": 16
+   }
+  },
+  "espinaca": {
+   "nombre": "Espinaca",
+   "rol": "verdura",
+   "kcal": 23,
+   "prot": 2.9,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 44,
+    "Walmart": 56,
+    "Soriana": 60,
+    "Chedraui": 58,
+    "Mercado local": 40
+   }
+  },
+  "brocoli": {
+   "nombre": "Brócoli",
+   "rol": "verdura",
+   "kcal": 34,
+   "prot": 2.8,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 42,
+    "Walmart": 52,
+    "Soriana": 56,
+    "Chedraui": 54,
+    "Mercado local": 40
+   }
+  },
+  "platano": {
+   "nombre": "Plátano",
+   "rol": "fruta",
+   "kcal": 89,
+   "prot": 1.1,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 20,
+    "Walmart": 25,
+    "Soriana": 26,
+    "Chedraui": 26,
+    "Mercado local": 18
+   }
+  },
+  "manzana": {
+   "nombre": "Manzana",
+   "rol": "fruta",
+   "kcal": 52,
+   "prot": 0.3,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 38,
+    "Walmart": 48,
+    "Soriana": 52,
+    "Chedraui": 50,
+    "Mercado local": 40
+   }
+  },
+  "naranja": {
+   "nombre": "Naranja",
+   "rol": "fruta",
+   "kcal": 47,
+   "prot": 0.9,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 16,
+    "Walmart": 22,
+    "Soriana": 24,
+    "Chedraui": 22,
+    "Mercado local": 12
+   }
+  },
+  "papaya": {
+   "nombre": "Papaya",
+   "rol": "fruta",
+   "kcal": 43,
+   "prot": 0.5,
+   "pza_g": null,
+   "unidad": "g",
+   "precios": {
+    "Bodega Aurrerá": 22,
+    "Walmart": 28,
+    "Soriana": 30,
+    "Chedraui": 28,
+    "Mercado local": 18
+   }
+  }
+ }
+}
