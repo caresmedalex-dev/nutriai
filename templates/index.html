@@ -35,7 +35,10 @@ input[type=file]{margin:10px 0;max-width:100%}.macros{display:flex;flex-wrap:wra
 <label>Actividad<select id="p_act"><option value="1">Casi no me muevo</option><option value="2" selected>Entreno 2-3 veces/sem</option><option value="3">Entreno 4+ veces/sem</option></select></label>
 <label>Objetivo<select id="p_obj"><option value="1">Mantener peso</option><option value="2">Bajar grasa</option><option value="3">Ganar músculo</option></select></label>
 <label>Comidas al día<select id="p_com"><option value="3">3</option><option value="4">4 (con colación)</option></select></label>
-<label>Calorías que comes hoy (opcional)<input id="p_kcal" type="number" placeholder="no sé"></label></div>
+<label>Calorías que comes hoy (opcional)<input id="p_kcal" type="number" placeholder="no sé"></label>
+<label>¿Alergias o intolerancias?<input id="p_ale" placeholder="mariscos, lácteos, nopal... o ninguna"></label>
+<label>¿Tomas suplementos?<input id="p_sup" placeholder="proteína, creatina, vitaminas... o ninguno"></label>
+<label>¿Condición médica?<input id="p_con" placeholder="sobrepeso, diabetes, hipertensión... o ninguna"></label></div>
 <button id="pgo">Armar mi plan</button><div id="pres" style="margin-top:14px"></div></section>
 <section class="card"><h2>Planes</h2><div class="plans">
 <div><b>Básico</b><br>GRATIS<br><small>Registro diario, calorías, alertas esenciales</small></div>
@@ -59,17 +62,18 @@ $('go').onclick=async()=>{const f=$('foto').files[0];if(!f)return $('res').textC
  $('res').textContent='Dr. Nutri está analizando... 🦦';const fd=new FormData();fd.append('foto',f);
  try{const r=await fetch('/api/scan',{method:'POST',body:fd});const d=await r.json();$('res').innerHTML=d.error?esc(d.error):render(d)}catch(e){$('res').textContent='Error de conexión'}};
 
-function datosPlan(){return {presupuesto:$('p_pres').value,peso:$('p_peso').value,estatura:$('p_est').value,edad:$('p_edad').value,sexo:$('p_sexo').value,actividad:$('p_act').value,objetivo:$('p_obj').value,comidas:$('p_com').value,kcal:$('p_kcal').value}}
+function datosPlan(){return {presupuesto:$('p_pres').value,peso:$('p_peso').value,estatura:$('p_est').value,edad:$('p_edad').value,sexo:$('p_sexo').value,actividad:$('p_act').value,objetivo:$('p_obj').value,comidas:$('p_com').value,kcal:$('p_kcal').value,alergias:$('p_ale').value,suplementos:$('p_sup').value,condiciones:$('p_con').value}}
 const IC={desayuno:'🌅 Desayuno',comida:'☀️ Comida',cena:'🌙 Cena',colacion:'🍎 Colación'};
 const por=x=>`${esc(x.nombre.toLowerCase())} ${x.pzas?esc(x.pzas)+' pza':esc(x.g)+' '+esc(x.unidad)}`;
 function renderPlan(p){
  let h=`<h3>Tu plan de ${p.dias} días (${esc(p.modo)})</h3><div class="macros"><span>🔥 ${p.kcal_real} kcal/día</span><span>💪 ${p.prot_real} g proteína (meta ${p.prot_obj})</span><span>💰 $${Math.round(p.costo_total)} de $${Math.round(p.presupuesto)}</span><span>≈ $${Math.round(p.costo_dia)}/día</span></div>`;
  h+=p.alcanza?`<p class="sem verde">✅ Te sobran $${Math.round(p.sobrante)}</p>`:`<p class="sem rojo">⚠️ Te faltan $${Math.round(p.faltante)}: alcanzas para ${p.dias_alcanza} de ${p.dias} días. Compra para esos días y completa en la siguiente quincena.</p>`;
  p.notas.forEach(n=>h+=`<p>ℹ️ ${esc(n)}</p>`); if(p.sugerencia)h+=`<p>💡 ${esc(p.sugerencia)}</p>`;
- h+='<h4>🍽️ Cómo repartir tu día</h4><ul>'+Object.entries(p.comidas).map(([m,v])=>`<li><b>${IC[m]}</b> (~${v.kcal} kcal): ${v.items.map(por).join(', ')}</li>`).join('')+'</ul>';
- h+='<h4>🏬 Dónde comprar (lo más barato)</h4>'+Object.entries(p.por_tienda).map(([t,its])=>`<details open><summary><b>${esc(t)}</b> · $${Math.round(its.reduce((a,i)=>a+i.costo,0))}</summary><table class="tb">${its.map(i=>`<tr><td>${esc(i.nombre)}</td><td>${esc(i.kg_total)} ${i.unidad=='ml'?'l':'kg'}</td><td>$${Math.round(i.costo)}</td></tr>`).join('')}</table></details>`).join('');
+ h+='<h4>🍽️ Cómo repartir tu día</h4>'+Object.entries(p.comidas).map(([m,v])=>`<p><b>${IC[m]}</b> (~${v.kcal} kcal)</p><ul>${v.lineas.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`).join('');
+ h+='<h4>🍳 Domingo de preparación (2 a 3 horas)</h4><ol>'+p.prep.map(x=>`<li>${esc(x)}</li>`).join('')+'</ol>';
+ h+=`<h4>📅 Semana tipo (se repite todas las semanas)</h4><table class="tb">${p.menu.slice(0,7).map(m=>`<tr><td><b>${m.dia}</b></td><td>${['desayuno','comida','cena','colacion'].filter(k=>m[k]).map(k=>IC[k].split(' ')[0]+' '+esc(m[k])).join('<br>')}</td></tr>`).join('')}</table>`;
+ h+='<h4>🏬 Dónde comprar y qué marca</h4>'+Object.entries(p.por_tienda).map(([t,its])=>`<details open><summary><b>${esc(t)}</b> · $${Math.round(its.reduce((a,i)=>a+i.costo,0))}</summary><table class="tb">${its.map(i=>`<tr><td>${esc(i.nombre)}<br><small>${esc(i.pres)}${i.verificado?' ✓ precio verificado':''}</small></td><td>× ${i.paquetes}</td><td>$${Math.round(i.costo)}</td></tr>`).join('')}</table></details>`).join('')+'<p><small>Alternativa económica en cada producto: marca propia de la tienda o granel.</small></p>';
  const u=Object.entries(p.una_tienda); if(u.length)h+='<h4>📊 Si compras todo en una sola tienda</h4><ul>'+u.map(([t,v])=>`<li>${esc(t)}: $${Math.round(v)}</li>`).join('')+`</ul><p>Combinando tiendas ahorras $${Math.round(u[0][1]-p.costo_total)} frente a la mejor tienda única.</p>`;
- h+=`<h4>📅 Menú de ${p.dias} días</h4><details><summary>Ver menú completo</summary><table class="tb">${p.menu.map(m=>`<tr><td><b>${m.dia}</b></td><td>${['desayuno','comida','cena','colacion'].filter(k=>m[k]).map(k=>IC[k].split(' ')[0]+' '+esc(m[k])).join('<br>')}</td></tr>`).join('')}</table></details>`;
  h+='<p><button id="rgo">🍳 Recetas con IA</button></p><div id="rtxt"></div>';
  return h+`<small>${esc(p.aviso)} Las cantidades son orientativas y no sustituyen a un nutriólogo.</small>`;
 }
