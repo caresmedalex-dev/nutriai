@@ -107,6 +107,7 @@ def _sexo(t):
 def _kcal(t):
     if re.search(r"\bno\b|ni idea|nose|no se", norm(t)) and _num(t) is None: return 0
     return _rango(500, 6000)(t)
+_texto = lambda t: (t.strip()[:200] or None)
 PLAN_PASOS = [
     ("presupuesto", "💰 ¿Cuánto dinero tienes para tu *quincena de comida*? (solo el número en pesos, ej. 800)", _rango(100, 20000)),
     ("peso", "⚖️ ¿Cuánto pesas? (en kg)", _rango(30, 250)),
@@ -117,10 +118,13 @@ PLAN_PASOS = [
     ("objetivo", "🎯 Tu objetivo:\n1️⃣ Mantener mi peso\n2️⃣ Bajar grasa\n3️⃣ Ganar músculo", _opcion(1, 2, 3)),
     ("comidas", "🍽️ ¿Cuántas comidas haces al día? (escribe 3 o 4)", _opcion(3, 4)),
     ("kcal", "🔥 ¿Cuántas calorías crees que comes al día ahora? Si no sabes, escribe *no sé* y calculo lo que necesitas.", _kcal),
+    ("alergias", "🥜 ¿Tienes alergia o intolerancia a algún alimento? (mariscos, lácteos, huevo, alguna verdura o fruta...). Si no, escribe *ninguna*.", _texto),
+    ("suplementos", "💊 ¿Tomas algún suplemento? (proteína en polvo, creatina, vitaminas en pastilla...). Si no, escribe *ninguno*.", _texto),
+    ("condiciones", "🩺 ¿Tienes alguna condición médica? (sobrepeso, diabetes, hipertensión...). Si no, escribe *ninguna*.", _texto),
 ]
 def plan_inicio(key):
     upd(key, state="plan:0:{}")
-    return ["🛒 ¡Vamos a armar tu quincena! Son 9 preguntas rápidas (escribe *cancelar* para salir).\n\n" + PLAN_PASOS[0][1]]
+    return ["🛒 ¡Vamos a armar tu quincena! Son 12 preguntas rápidas (escribe *cancelar* para salir).\n\n" + PLAN_PASOS[0][1]]
 def plan_guardar(key, p):
     with db() as c: c.execute("insert or replace into planes(key,data) values(?,?)", (key, json.dumps(p)))
 def plan_cargar(key):
@@ -138,6 +142,7 @@ def plan_step(key, u, t):
         upd(key, state=f"plan:{i+1}:{json.dumps(datos)}"); return [PLAN_PASOS[i + 1][1]]
     upd(key, state="")
     try: p = planificador.armar(datos)
+    except planificador.PlanBloqueado as e: return [str(e), escalate(key, 2, "Plan no generado por una condición de salud del usuario")]
     except ValueError as e: return [f"No pude armar el plan: {e} Escribe *plan* para intentarlo de nuevo."]
     except Exception as e: print("plan error", e); return ["No pude armar el plan 😅 Escribe *plan* para intentarlo de nuevo."]
     plan_guardar(key, p); return [planificador.texto_chat(p)]

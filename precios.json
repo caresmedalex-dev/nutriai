@@ -1,5 +1,5 @@
 {
- "_aviso": "PRECIOS DE EJEMPLO (pesos MXN por kg o litro) para la beta. NO son precios reales de tienda: actualízalos con los de tu ciudad editando este archivo. El programa lo lee cada vez que se arma un plan.",
+ "_aviso": "Precios y marcas de REFERENCIA (pesos MXN por kg o litro). Solo el yogurt Oikos está verificado en Bodega Aurrerá; los demás son estimados: confírmalos en tu tienda y actualiza este archivo.",
  "actualizado": "ejemplo",
  "tiendas": [
   "Bodega Aurrerá",
@@ -22,7 +22,10 @@
     "Soriana": 34,
     "Chedraui": 33,
     "Mercado local": 30
-   }
+   },
+   "pres": "Verde Valle, bolsa 1 kg",
+   "alt": "marca propia de la tienda",
+   "pack_g": 1000
   },
   "pasta": {
    "nombre": "Pasta para sopa",
@@ -37,7 +40,10 @@
     "Soriana": 44,
     "Chedraui": 43,
     "Mercado local": 40
-   }
+   },
+   "pres": "La Moderna, pasta para sopa 200 g",
+   "alt": "marca propia",
+   "pack_g": 200
   },
   "papa": {
    "nombre": "Papa",
@@ -52,7 +58,10 @@
     "Soriana": 31,
     "Chedraui": 30,
     "Mercado local": 22
-   }
+   },
+   "pres": "Papa blanca, granel (medio kilo)",
+   "alt": "—",
+   "pack_g": 500
   },
   "avena": {
    "nombre": "Avena",
@@ -62,12 +71,15 @@
    "pza_g": null,
    "unidad": "g",
    "precios": {
-    "Bodega Aurrerá": 36,
-    "Walmart": 40,
-    "Soriana": 44,
-    "Chedraui": 42,
-    "Mercado local": 38
-   }
+    "Bodega Aurrerá": 68,
+    "Walmart": 72,
+    "Soriana": 76,
+    "Chedraui": 75,
+    "Mercado local": 66
+   },
+   "pres": "Quaker, hojuelas 400 g",
+   "alt": "avena a granel",
+   "pack_g": 400
   },
   "tortilla": {
    "nombre": "Tortilla de maíz",
@@ -82,7 +94,10 @@
     "Soriana": 27,
     "Chedraui": 27,
     "Mercado local": 23
-   }
+   },
+   "pres": "Tortilla de maíz fresca (tortillería), kilo",
+   "alt": "masa o harina para hacerlas",
+   "pack_g": 1000
   },
   "frijol": {
    "nombre": "Frijol",
@@ -97,7 +112,10 @@
     "Soriana": 44,
     "Chedraui": 43,
     "Mercado local": 38
-   }
+   },
+   "pres": "Isadora, frijol 900 g",
+   "alt": "frijol a granel",
+   "pack_g": 900
   },
   "lenteja": {
    "nombre": "Lenteja",
@@ -112,7 +130,10 @@
     "Soriana": 52,
     "Chedraui": 50,
     "Mercado local": 44
-   }
+   },
+   "pres": "Verde Valle, lenteja 500 g",
+   "alt": "lenteja a granel",
+   "pack_g": 500
   },
   "garbanzo": {
    "nombre": "Garbanzo",
@@ -127,7 +148,10 @@
     "Soriana": 70,
     "Chedraui": 68,
     "Mercado local": 60
-   }
+   },
+   "pres": "Verde Valle, garbanzo 500 g",
+   "alt": "a granel",
+   "pack_g": 500
   },
   "huevo": {
    "nombre": "Huevo",
@@ -137,12 +161,15 @@
    "pza_g": 50,
    "unidad": "g",
    "precios": {
-    "Bodega Aurrerá": 46,
-    "Walmart": 52,
-    "Soriana": 56,
-    "Chedraui": 55,
-    "Mercado local": 50
-   }
+    "Bodega Aurrerá": 58,
+    "Walmart": 64,
+    "Soriana": 68,
+    "Chedraui": 66,
+    "Mercado local": 60
+   },
+   "pres": "San Juan o Bachoco, huevo blanco 18 piezas",
+   "alt": "huevo a granel por kilo",
+   "pack_g": 900
   },
   "muslo": {
    "nombre": "Muslo de pollo",
@@ -152,12 +179,15 @@
    "pza_g": null,
    "unidad": "g",
    "precios": {
-    "Bodega Aurrerá": 62,
-    "Walmart": 68,
-    "Soriana": 74,
-    "Chedraui": 72,
-    "Mercado local": 60
-   }
+    "Bodega Aurrerá": 75,
+    "Walmart": 82,
+    "Soriana": 88,
+    "Chedraui": 85,
+    "Mercado local": 70
+   },
+   "pres": "Pierna y muslo de pollo, charola (kilo)",
+   "alt": "pollo entero",
+   "pack_g": 1000
   },
   "pechuga": {
    "nombre": "Pechuga de pollo",
@@ -167,12 +197,15 @@
    "pza_g": null,
    "unidad": "g",
    "precios": {
-    "Bodega Aurrerá": 112,
-    "Walmart": 124,
-    "Soriana": 132,
-    "Chedraui": 130,
-    "Mercado local": 108
-   }
+    "Bodega Aurrerá": 125,
+    "Walmart": 135,
+    "Soriana": 145,
+    "Chedraui": 142,
+    "Mercado local": 120
+   },
+   "pres": "Pechuga de pollo, charola (kilo)",
+   "alt": "pechuga con hueso",
+   "pack_g": 1000
   },
   "atun": {
    "nombre": "Atún en lata",
@@ -186,7 +219,10 @@
     "Walmart": 158,
     "Soriana": 170,
     "Chedraui": 165
-   }
+   },
+   "pres": "Dolores, atún en agua 140 g",
+   "alt": "marca propia",
+   "pack_g": 140
   },
   "sardina": {
    "nombre": "Sardina en lata",
@@ -200,7 +236,10 @@
     "Walmart": 90,
     "Soriana": 96,
     "Chedraui": 94
-   }
+   },
+   "pres": "Calmex, sardina 425 g",
+   "alt": "marca propia",
+   "pack_g": 425
   },
   "molida": {
    "nombre": "Carne molida de res",
@@ -215,7 +254,10 @@
     "Soriana": 180,
     "Chedraui": 176,
     "Mercado local": 158
-   }
+   },
+   "pres": "Carne molida de res, charola (kilo)",
+   "alt": "—",
+   "pack_g": 1000
   },
   "leche": {
    "nombre": "Leche",
@@ -225,25 +267,32 @@
    "pza_g": null,
    "unidad": "ml",
    "precios": {
-    "Bodega Aurrerá": 21,
-    "Walmart": 24,
-    "Soriana": 25,
-    "Chedraui": 25
-   }
+    "Bodega Aurrerá": 25,
+    "Walmart": 27,
+    "Soriana": 28,
+    "Chedraui": 28
+   },
+   "pres": "Lala o Alpura, leche entera 1 litro",
+   "alt": "marca propia 1 litro",
+   "pack_g": 1000
   },
   "yogurt": {
-   "nombre": "Yogurt natural",
+   "nombre": "Yogurt griego natural",
    "rol": "lacteo",
    "kcal": 61,
    "prot": 3.5,
    "pza_g": null,
    "unidad": "g",
    "precios": {
-    "Bodega Aurrerá": 44,
-    "Walmart": 50,
-    "Soriana": 54,
-    "Chedraui": 52
-   }
+    "Bodega Aurrerá": 94,
+    "Walmart": 100,
+    "Soriana": 105,
+    "Chedraui": 104
+   },
+   "pres": "Oikos, yoghurt griego natural 900 g",
+   "alt": "Alpura griego natural 750 g",
+   "pack_g": 900,
+   "verificado": "Bodega Aurrerá, $85 por 900 g (captura 06/nov/2026)"
   },
   "aceite": {
    "nombre": "Aceite",
@@ -257,7 +306,10 @@
     "Walmart": 50,
     "Soriana": 54,
     "Chedraui": 52
-   }
+   },
+   "pres": "1-2-3, aceite vegetal 900 ml",
+   "alt": "marca propia",
+   "pack_g": 900
   },
   "cacahuate": {
    "nombre": "Cacahuate",
@@ -272,7 +324,10 @@
     "Soriana": 104,
     "Chedraui": 100,
     "Mercado local": 85
-   }
+   },
+   "pres": "Cacahuate natural sin sal 200 g",
+   "alt": "a granel",
+   "pack_g": 200
   },
   "jitomate": {
    "nombre": "Jitomate",
@@ -287,7 +342,10 @@
     "Soriana": 30,
     "Chedraui": 29,
     "Mercado local": 20
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "cebolla": {
    "nombre": "Cebolla",
@@ -302,7 +360,10 @@
     "Soriana": 26,
     "Chedraui": 25,
     "Mercado local": 16
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "zanahoria": {
    "nombre": "Zanahoria",
@@ -317,7 +378,10 @@
     "Soriana": 24,
     "Chedraui": 22,
     "Mercado local": 14
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "calabacita": {
    "nombre": "Calabacita",
@@ -332,7 +396,10 @@
     "Soriana": 36,
     "Chedraui": 35,
     "Mercado local": 24
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "nopal": {
    "nombre": "Nopal",
@@ -347,7 +414,10 @@
     "Soriana": 30,
     "Chedraui": 28,
     "Mercado local": 16
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "espinaca": {
    "nombre": "Espinaca",
@@ -362,7 +432,10 @@
     "Soriana": 60,
     "Chedraui": 58,
     "Mercado local": 40
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "brocoli": {
    "nombre": "Brócoli",
@@ -377,7 +450,10 @@
     "Soriana": 56,
     "Chedraui": 54,
     "Mercado local": 40
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "platano": {
    "nombre": "Plátano",
@@ -392,7 +468,10 @@
     "Soriana": 26,
     "Chedraui": 26,
     "Mercado local": 18
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "manzana": {
    "nombre": "Manzana",
@@ -407,7 +486,10 @@
     "Soriana": 52,
     "Chedraui": 50,
     "Mercado local": 40
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "naranja": {
    "nombre": "Naranja",
@@ -422,7 +504,10 @@
     "Soriana": 24,
     "Chedraui": 22,
     "Mercado local": 12
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   },
   "papaya": {
    "nombre": "Papaya",
@@ -437,7 +522,10 @@
     "Soriana": 30,
     "Chedraui": 28,
     "Mercado local": 18
-   }
+   },
+   "pres": "Fresco, granel (medio kilo)",
+   "alt": "mercado local",
+   "pack_g": 500
   }
  }
 }
